@@ -1,0 +1,114 @@
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Material Icons'),
+       local('MaterialIcons-Regular'),
+       url('/vendor/material-design-icons/iconfont/MaterialIcons-Regular.woff2') format('woff2');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 18pt;
+  display: inline-block;
+  color: #fff;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+	-webkit-font-smoothing: antialiased;
+}
+
+body {
+  color: #606c71;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  overflow-x: hidden;
+  padding-top: 70px;
+}
+
+.no-js .alert {
+  display: block;
+}
+
+.js .alert {
+  display: none;
+}
+
+.alert {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(255, 0, 0, .95);
+  color: #fff;
+  padding: 12px;
+  text-align: center;
+}
+
+.container {
+  position: relative;
+  min-height: calc(100vh - 85px);
+}
+
+.container::before,
+.container::after {
+  content: ' ';
+  display: table;
+}
+
+.container::after {
+  clear: both;
+}
+
+.big-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+}
+
+.big-icon .material-icons {
+  color: #9c9c9c;
+  font-size: 25rem;
+}
+
+.btn-float-action {
+  position: fixed !important;
+  right: 15px;
+  bottom: 15px;
+}
+
+h1 {
+  font-size: 18pt;
+}
+
+h2 {
+  font-size: 16pt;
+}
+
+h3 {
+  font-size: 14pt;
+}
+
+h4, h5, h6 {
+  font-size: 12pt;
+}

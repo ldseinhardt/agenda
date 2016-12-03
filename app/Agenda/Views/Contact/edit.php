@@ -1,10 +1,10 @@
 <?php
-    $this->content = "<h1>Ops! Houve um erro no servidor... : (</h1>";
+    $this->content = '<h1>Editar contato</h1>';
 
     $this->content .= '
         <div class="panel panel-default">
           <div class="panel-body">
-            <a href="/">Voltar a página inicial...</a>
+            <strong>Ops! Isso não foi implementado... : (</strong>
           </div>
         </div>
     ';

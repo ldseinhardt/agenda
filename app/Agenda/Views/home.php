@@ -1,2 +1,8 @@
-<h1>Home</h1>
-<h1>Bem-vindo, <?= $this->name ?>!</h1>
+<?php
+    $this->content = '
+        <h1 class="big-icon">
+            <i class="material-icons">&#xE0BA;</i>
+        </h1>
+    ';
+
+    $this->include('Layout/base');
