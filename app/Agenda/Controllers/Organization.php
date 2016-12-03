@@ -57,6 +57,27 @@ class Organization
      */
     public static function add($app, $request)
     {
+        if ($request->isPost()) {
+            $organization = new OrganizationModel($app);
+
+            $data = $request->getData();
+
+            $id = $organization->add(
+                $data['name'] ?? '',
+                $data['phone'] ?? ''
+            );
+
+            if ($request->isJson()) {
+                $app->json($id);
+            }
+
+            if (!$id) {
+                $app->redirect($request->getOrigin() . '?error=1');
+            }
+
+            $app->redirect('/organization/' . $id);
+        }
+
         $app->view('Organization/add');
     }
 
@@ -65,6 +86,24 @@ class Organization
      */
     public static function edit($id, $app, $request)
     {
+        if ($request->isPost()) {
+            $organization = new OrganizationModel($app);
+
+            $data = $request->getData();
+
+             $organization->add(
+                $id,
+                $data['name'] ?? '',
+                $data['phone'] ?? ''
+            );
+
+            if ($request->isJson()) {
+                $app->json(true);
+            }
+
+            $app->redirect('/organization/' . $id);
+        }
+
         $app->view('Organization/edit', [
             'id' => $id
         ]);

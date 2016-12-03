@@ -77,6 +77,6 @@ class Contact
 
         $router::add('/^\/contact\/(\d{1,8})\/edit\/?$/', [new self(), 'edit'], 'GET | POST');
 
-        $router::post('/^\/contact\/(\d{1,8})\/delete\/?$/', [new self(), 'delete']);
+        $router::post('/^\/contact\/(\d{1,8})\/delete\/?$/', [new self(), 'delete'], 'GET | POST');
     }
 }

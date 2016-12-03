@@ -40,11 +40,11 @@ class MySQL
     }
 
     /**
-     * Remove possíveis valores que resultariam em um mysql injection
+     * Retorna o id da última inserção (auto_incremento)
      */
-    public function scape($value)
+    public function insert_id()
     {
-        return $this->mysqli->escape_string($value);
+        return $this->mysqli->insert_id;
     }
 
     /**
@@ -53,5 +53,13 @@ class MySQL
     public function affected_rows()
     {
         return $this->mysqli->affected_rows;
+    }
+
+    /**
+     * Remove possíveis valores que resultariam em um mysql injection
+     */
+    public function scape($value)
+    {
+        return $this->mysqli->escape_string($value);
     }
 }

@@ -31,6 +31,7 @@ class Organization
                 `phone`
             FROM
                 `organizations`
+            ORDER BY `id` DESC
         ");
 
         $data = [];
@@ -67,9 +68,12 @@ class Organization
         $name = $this->mysql->scape($name);
         $phone = $this->mysql->scape($phone);
 
+        $this->mysql->query("
+            INSERT INTO `organizations` (`name`, `phone`) VALUE
+              ('{$name}', '$phone')
+        ");
 
-
-        return $this->mysql->affected_rows() !== -1;
+        return $this->mysql->insert_id();
     }
 
     public function update($id)

@@ -28,4 +28,9 @@
     navbar.find('li').last().addClass('active');
   }
 
+  /**
+   * Inicializa o material design
+   */
+  $.material.init();
+
 })(jQuery);

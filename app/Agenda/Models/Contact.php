@@ -39,6 +39,7 @@ class Contact
               LEFT JOIN `emails` ON (`contacts`.`id` = `emails`.`contact_id` AND `contacts`.`primary_email_id` = `emails`.`id`)
               LEFT JOIN `phones` ON (`contacts`.`id` = `phones`.`contact_id` AND `contacts`.`primary_phone_id` = `phones`.`id`)
               LEFT JOIN `organizations` ON (`contacts`.`organization_id` = `organizations`.`id`)
+            ORDER BY `id` DESC
         ");
 
         $data = [];
