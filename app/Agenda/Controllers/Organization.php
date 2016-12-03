@@ -2,7 +2,6 @@
 
 namespace Agenda\Controllers;
 
-use Agenda\Models\Contact as ContactModel;
 use Agenda\Models\Organization as OrganizationModel;
 
 /**
@@ -15,7 +14,18 @@ class Organization
      */
     public static function all($app, $request)
     {
-        $app->view('Organization/list');
+        $organization = new OrganizationModel($app);
+
+        $organizations = $organization->all();
+
+        if ($request->isJson()) {
+            $app->json($organizations);
+        }
+
+        $app->view('Organization/list', [
+            'organizations' => $organizations,
+            'error' => $request->getParam('error', 0)
+        ]);
     }
 
     /**
@@ -23,8 +33,22 @@ class Organization
      */
     public static function view($id, $app, $request)
     {
+        $organization = new OrganizationModel($app);
+
+        $organization = $organization->get($id);
+
+        if ($request->isJson()) {
+            $app->json($organization);
+        }
+
+        if (!$organization) {
+            $app->redirect('/organization');
+        }
+
         $app->view('Organization/view', [
-            'id' => $id
+            'id' => $id,
+            'organization' => $organization,
+            'error' => $request->getParam('error', 0)
         ]);
     }
 
@@ -51,7 +75,19 @@ class Organization
      */
     public static function delete($id, $app, $request)
     {
-        $app->render('Organization/delete: ' . $id);
+        $organization = new OrganizationModel($app);
+
+        $status = $organization->delete($id);
+
+        if ($request->isJson()) {
+            $app->json($status);
+        }
+
+        if (!$status) {
+            $app->redirect($request->getOrigin() . '?error=1');
+        }
+
+        $app->redirect('/organization');
     }
 
     /**
@@ -67,6 +103,6 @@ class Organization
 
         $router::add('/^\/organization\/(\d{1,8})\/edit\/?$/', [new self(), 'edit'], 'GET | POST');
 
-        $router::post('/^\/organization\/(\d{1,8})\/delete\/?$/', [new self(), 'delete']);
+        $router::add('/^\/organization\/(\d{1,8})\/delete\/?$/', [new self(), 'delete'], 'GET | POST');
     }
 }

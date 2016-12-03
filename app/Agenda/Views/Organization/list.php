@@ -35,7 +35,7 @@
             <div class=\"list-group-separator\"></div>
         ";
     }
-    
+
     $this->content .= "
                         </div>
                     </div>
@@ -43,5 +43,15 @@
             </div>
         </div>
     ";
+
+    if ($this->error === '1') {
+        $this->content .= "
+            <script>
+                setTimeout(function() {
+                    alert('Esta organização não pode ser removida pois existem contatos que pertencem a mesma!');
+                }, 100);
+            </script>
+        ";
+    }
 
     $this->include('Layout/base');

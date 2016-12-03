@@ -24,7 +24,14 @@ class Organization
      */
     public function all()
     {
-        $query = $this->mysql->query('SELECT * FROM organizations');
+        $query = $this->mysql->query("
+            SELECT
+                `id`,
+                `name`,
+                `phone`
+            FROM
+                `organizations`
+        ");
 
         $data = [];
 
@@ -39,16 +46,52 @@ class Organization
     {
         $id = $this->mysql->scape($id);
 
-        return [];
+        $query = $this->mysql->query("
+            SELECT
+                `id`,
+                `name`,
+                `phone`
+            FROM
+                `organizations`
+            WHERE
+                `id` = {$id};
+        ");
+
+        return $query->num_rows
+            ? $query->fetch_object()
+            : null;
+    }
+
+    public function add($name, $phone)
+    {
+        $name = $this->mysql->scape($name);
+        $phone = $this->mysql->scape($phone);
+
+
+
+        return $this->mysql->affected_rows() !== -1;
     }
 
     public function update($id)
     {
         $id = $this->mysql->scape($id);
+
+
+
+        return $this->mysql->affected_rows() !== -1;
     }
 
     public function delete($id)
     {
         $id = $this->mysql->scape($id);
+
+        $query = $this->mysql->query("
+            DELETE FROM
+                `organizations`
+            WHERE
+                `id` = {$id};
+        ");
+
+        return $this->mysql->affected_rows() !== -1;
     }
 }

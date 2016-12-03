@@ -57,6 +57,11 @@ class Contact
         return [];
     }
 
+    public function add()
+    {
+
+    }
+
     public function update($id)
     {
         $id = $this->mysql->scape($id);
