@@ -7,6 +7,9 @@ use Agenda\Agenda;
 
 /**
  * Registra as aplicações para que seja adcionado as rotas da mesma
+ * Nota: A aplicação Agenda poderia herdar App, porém desta forma
+ * poderia ser adicionado vários apps no mesmo projeto como, por exemplo,
+ * um app para envio de Email ou SMS
  */
 $app = new App([
     Agenda::class

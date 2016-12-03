@@ -18,11 +18,11 @@ class Request
      */
     function __construct()
     {
-        $this->method = $_SERVER['REQUEST_METHOD'];
-        $this->uri = $_SERVER['REQUEST_URI'];
-        $this->accept = $_SERVER['HTTP_ACCEPT'];
-        $this->params = $_GET;
-        $this->data = $_POST;
+        $this->method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
+        $this->uri = $_SERVER['SCRIPT_NAME'] ?? '/';
+        $this->accept = $_SERVER['HTTP_ACCEPT'] ?? '';
+        $this->params = $_GET ?? [];
+        $this->data = $_POST ?? [];
     }
 
     /**

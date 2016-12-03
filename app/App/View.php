@@ -7,11 +7,13 @@ namespace App;
  */
 class View
 {
+    private $views_path;
     /**
      * Adiciona ao contexto da view seus parâmetros
      */
-    function __construct($args)
+    function __construct($path, $args)
     {
+        $this->views_path = $path;
         foreach ($args as $key => $value) {
             $this->{$key} = $value;
         }
@@ -20,8 +22,12 @@ class View
     /**
      * Carrega a view (arquivo)
      */
-    public function load($filename)
+    public function include($filename)
     {
-        require_once $filename;
+        $matches = explode('.', $filename);
+        if (count($matches) === 1) {
+            $filename .= '.php';
+        }
+        require_once $this->views_path . $filename;
     }
 }

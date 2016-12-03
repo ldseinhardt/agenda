@@ -61,10 +61,10 @@ class App
     {
         Router::get($route, function($prefix, $filename, $app) use($bases) {
             try {
-                preg_match('/\.(.+)\/?$/', $filename, $matches);
-                if (count($matches) === 2) {
+                $matches = explode('.', $filename);
+                if (count($matches) > 1) {
                     foreach ($this->options['mimetypes'] as $ext => $mime_type) {
-                        if ($ext === $matches[1]) {
+                        if ($ext === $matches[count($matches) - 1]) {
                             header("Content-Type: {$mime_type}; charset=utf-8");
                             break;
                         }
@@ -92,11 +92,7 @@ class App
     public function view($view = 'error', $args = [])
     {
         try {
-            preg_match('/\.(.+)\/?$/', $view, $matches);
-            if (count($matches) !== 2) {
-                $view .= '.php';
-            }
-            (new View($args))->load($this->options['views'] . $view);
+            (new View($this->options['views'], $args))->include($view);
             exit();
         } catch (Exception $e) {
             $app->view();

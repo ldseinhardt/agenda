@@ -38,4 +38,12 @@ class MySQL
     {
         return $this->mysqli->query($sql);
     }
+
+    /**
+     * Remove possíveis valores que resultariam em um mysql injection
+     */
+    public function scape($value)
+    {
+        return $this->mysqli->escape_string($value);
+    }
 }
