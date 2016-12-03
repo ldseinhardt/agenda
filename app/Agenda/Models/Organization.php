@@ -25,6 +25,30 @@ class Organization
     public function all()
     {
         $query = $this->mysql->query('SELECT * FROM organizations');
-        return $query->fetch_all();
+
+        $data = [];
+
+        while ($row = $query->fetch_object()) {
+            $data[] = $row;
+        }
+
+        return $data;
+    }
+
+    public function get($id)
+    {
+        $id = $this->mysql->scape($id);
+
+        return [];
+    }
+
+    public function update($id)
+    {
+        $id = $this->mysql->scape($id);
+    }
+
+    public function delete($id)
+    {
+        $id = $this->mysql->scape($id);
     }
 }

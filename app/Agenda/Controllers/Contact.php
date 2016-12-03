@@ -15,7 +15,17 @@ class Contact
      */
     public static function all($app, $request)
     {
-        $app->json((new ContactModel($app))->all());
+        $contact = new ContactModel($app);
+
+        $contacts = $contact->all();
+
+        if ($request->isJson()) {
+            $app->json($contacts);
+        }
+
+        $app->view('Contact/list', [
+            'contacts' => $contacts
+        ]);
     }
 
     /**
@@ -23,7 +33,9 @@ class Contact
      */
     public static function view($id, $app, $request)
     {
-        $app->render('Contact/view: ' . $id);
+        $app->view('Contact/view', [
+            'id' => $id
+        ]);
     }
 
     /**
@@ -31,7 +43,7 @@ class Contact
      */
     public static function add($app, $request)
     {
-        $app->render('Contact/add');
+        $app->view('Contact/add');
     }
 
     /**
@@ -39,7 +51,9 @@ class Contact
      */
     public static function edit($id, $app, $request)
     {
-        $app->render('Contact/edit: ' . $id);
+        $app->view('Contact/edit', [
+            'id' => $id
+        ]);
     }
 
     /**

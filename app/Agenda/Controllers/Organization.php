@@ -15,7 +15,7 @@ class Organization
      */
     public static function all($app, $request)
     {
-        $app->render('Organization/all');
+        $app->view('Organization/list');
     }
 
     /**
@@ -23,7 +23,9 @@ class Organization
      */
     public static function view($id, $app, $request)
     {
-        $app->render('Organization/view: ' . $id);
+        $app->view('Organization/view', [
+            'id' => $id
+        ]);
     }
 
     /**
@@ -31,7 +33,7 @@ class Organization
      */
     public static function add($app, $request)
     {
-        $app->render('Organization/add');
+        $app->view('Organization/add');
     }
 
     /**
@@ -39,7 +41,9 @@ class Organization
      */
     public static function edit($id, $app, $request)
     {
-        $app->render('Organization/edit: ' . $id);
+        $app->view('Organization/edit', [
+            'id' => $id
+        ]);
     }
 
     /**

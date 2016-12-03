@@ -15,7 +15,17 @@ class Agenda
      */
     public static function home($app, $request)
     {
-        $app->view('home', ['name' => 'Luan']);
+        $app->view('home');
+    }
+
+    /**
+     * Controller da rota: /search (Página de resultados de buscas)
+     */
+    public static function search($app, $request)
+    {
+        $app->view('search', [
+            'search' => $request->getParam('q', '')
+        ]);
     }
 
     /**
@@ -24,6 +34,8 @@ class Agenda
     public static function addRoutes($router)
     {
         $router::get('/^\/?$/', [new self(), 'home']);
+
+        $router::get('/^\/search\/?$/', [new self(), 'search']);
 
         Contact::addRoutes($router);
 
