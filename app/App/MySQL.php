@@ -46,4 +46,12 @@ class MySQL
     {
         return $this->mysqli->escape_string($value);
     }
+
+    /**
+     * Retorna o número de items que foram modificados
+     */
+    public function affected_rows()
+    {
+        return $this->mysqli->affected_rows;
+    }
 }

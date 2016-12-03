@@ -20,6 +20,7 @@ class Request
     {
         $this->method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
         $this->uri = $_SERVER['SCRIPT_NAME'] ?? '/';
+        $this->origin = $_SERVER['HTTP_REFERER'] ?? '/';
         $this->accept = $_SERVER['HTTP_ACCEPT'] ?? '';
         $this->params = $_GET ?? [];
         $this->data = $_POST ?? [];
@@ -55,6 +56,14 @@ class Request
     public function getUrl()
     {
         return $this->uri;
+    }
+
+    /**
+     * Retorna a url de origem da requisição
+     */
+    public function getOrigin()
+    {
+        return $this->origin;
     }
 
     /**
