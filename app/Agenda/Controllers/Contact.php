@@ -82,8 +82,44 @@ class Contact
      */
     public static function edit($id, $app, $request)
     {
+        $contact = new ContactModel($app);
+
+        $original = $contact->get($id);
+
+        if (!$original) {
+            $app->redirect('/contact');
+        }
+
+        if ($request->isPost()) {
+            $data = $request->getData();
+
+            /*
+            $entries = [
+                'name' => '',
+                'phone' => ''
+            ];
+
+            $edit = [];
+            foreach ($entries as $key => $default) {
+                $value = $data[$key] ?? $default;
+                if ($value !== $original->{$key}) {
+                    $edit[$key] = $value;
+                }
+            }
+            $contact->update($id, $edit);
+
+            */
+
+            if ($request->isJson()) {
+                $app->json(true);
+            }
+
+            $app->redirect('/contact/' . $id);
+        }
+
         $app->view('Contact/edit', [
-            'id' => $id
+            'id' => $id,
+            'contact' => $original
         ]);
     }
 

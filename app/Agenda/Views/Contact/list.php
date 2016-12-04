@@ -14,7 +14,19 @@
     }
 
     foreach ($this->contacts as $contact) {
-        $title = $contact->name ?? $contact->phone;
+        $title = trim($contact->name);
+        if (!$title) {
+            $title = $contact->phone;
+        }
+        if (!$title) {
+            $title = $contact->email;
+        }
+        if (!$title) {
+            $title = $contact->organization;
+        }
+        if (!$title) {
+            $title = 'Sem nome';
+        }
 
         $info = '';
         if ($contact->phone) {

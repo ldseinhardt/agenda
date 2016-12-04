@@ -88,9 +88,9 @@ class Organization
     {
         $organization = new OrganizationModel($app);
 
-        $org = $organization->get($id);
+        $original = $organization->get($id);
 
-        if (!$org) {
+        if (!$original) {
             $app->redirect('/organization');
         }
 
@@ -105,7 +105,7 @@ class Organization
             $edit = [];
             foreach ($entries as $key => $default) {
                 $value = $data[$key] ?? $default;
-                if ($value !== $org->{$key}) {
+                if ($value !== $original->{$key}) {
                     $edit[$key] = $value;
                 }
             }
@@ -120,7 +120,7 @@ class Organization
 
         $app->view('Organization/edit', [
             'id' => $id,
-            'organization' => $org
+            'organization' => $original
         ]);
     }
 

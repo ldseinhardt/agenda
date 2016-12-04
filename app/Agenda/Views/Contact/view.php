@@ -1,5 +1,18 @@
 <?php
-    $title = $this->contact->name ?? $this->contact->phone;
+    $title = trim($this->contact->name);
+    if (!$title) {
+        $title = $this->contact->phone;
+    }
+    if (!$title) {
+        $title = $this->contact->email;
+    }
+    if (!$title) {
+        $title = $this->contact->organization;
+    }
+    if (!$title) {
+        $title = 'Sem nome';
+    }
+
     $this->content = "
         <h1>{$title}</h1>
 

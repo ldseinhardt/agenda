@@ -26,8 +26,12 @@
 
                             <div class=\"form-group\">
                               <div class=\"col-md-10 col-md-offset-2\">
-                                <button type=\"submit\" class=\"btn btn-primary\">Salvar</button>
-                                <a href=\"/organization\" class=\"btn btn-default\">Cancelar</a>
+                                <button type=\"submit\" class=\"btn btn-primary\">
+                                    <i class=\"material-icons\" style=\"color: #009688\">&#xE161;</i> Salvar
+                                </button>
+                                <a href=\"/organization\" class=\"btn btn-default\">
+                                    Cancelar
+                                </a>
                               </div>
                             </div>
                           </fieldset>

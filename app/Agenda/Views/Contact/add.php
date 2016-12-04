@@ -89,20 +89,17 @@
                                       </div>
                                     </div>
                                 </div>
-                                <div class=\"col-md-2\">
+                                <div class=\"col-md-3\">
                                     <div class=\"form-group\">
                                         <div class=\"radio radio-primary\">
                                             <label>
-                                              <input type=\"radio\" name=\"primary_phone_id\" value=\"1\" checked=\"\"> Principal
+                                              <input type=\"radio\" name=\"primary_phone_id\" value=\"1\" checked> Principal
                                             </label>
                                         </div>
                                     </div>
                                 </div>
-                                <div class=\"col-md-3\">
+                                <div class=\"col-md-2\">
                                     <div class=\"form-group\">
-                                        <a href=\"javascript:void(0)\" class=\"btn btn-primary btn-add-phone\">
-                                            <i class=\"material-icons\" style=\"color: #009688\">&#xE148;</i>
-                                        </a>
                                         <a href=\"javascript:void(0)\" class=\"btn btn-primary btn-del-phone\" data-target=\"#box_phone_1\">
                                             <i class=\"material-icons\" style=\"color: #fe6363\">&#xE15D;</i>
                                         </a>
@@ -110,7 +107,13 @@
                                 </div>
                             </div>
 
-                            <div class=\"row after_phones\" id=\"box_email_1\">
+                            <div class=\"form-group text-center after_phones\">
+                                <a href=\"javascript:void(0)\" class=\"btn btn-primary btn-add-phone\">
+                                    <i class=\"material-icons\" style=\"color: #009688\">&#xE148;</i> Adicionar campo de telefone
+                                </a>
+                            </div>
+
+                            <div class=\"row\" id=\"box_email_1\">
                                 <div class=\"col-md-6\">
                                     <div class=\"form-group\">
                                       <label for=\"email_1\" class=\"col-md-2 control-label\">Email</label>
@@ -119,20 +122,17 @@
                                       </div>
                                     </div>
                                 </div>
-                                <div class=\"col-md-3\">
+                                <div class=\"col-md-4\">
                                     <div class=\"form-group\">
                                       <div class=\"radio radio-primary\">
                                         <label>
-                                          <input type=\"radio\" name=\"primary_email_id\" value=\"1\" checked=\"\"> Principal
+                                          <input type=\"radio\" name=\"primary_email_id\" value=\"1\" checked> Principal
                                         </label>
                                       </div>
                                     </div>
                                 </div>
-                                <div class=\"col-md-3\">
+                                <div class=\"col-md-2\">
                                     <div class=\"form-group\">
-                                        <a href=\"javascript:void(0)\" class=\"btn btn-primary btn-add-email\">
-                                            <i class=\"material-icons\" style=\"color: #009688\">&#xE148;</i>
-                                        </a>
                                         <a href=\"javascript:void(0)\" class=\"btn btn-primary btn-del-email\" data-target=\"#box_email_1\">
                                             <i class=\"material-icons\" style=\"color: #fe6363\">&#xE15D;</i>
                                         </a>
@@ -140,7 +140,13 @@
                                 </div>
                             </div>
 
-                            <div class=\"form-group after_emails\">
+                            <div class=\"form-group text-center after_emails\">
+                                <a href=\"javascript:void(0)\" class=\"btn btn-primary btn-add-email\">
+                                    <i class=\"material-icons\" style=\"color: #009688\">&#xE148;</i> Adicionar campo de email
+                                </a>
+                            </div>
+
+                            <div class=\"form-group\">
                               <label for=\"organization_search\" class=\"col-md-1 control-label\">Organização</label>
                               <div class=\"col-md-11\">
                                 <input type=\"search\" class=\"form-control\" id=\"organization_search\" name=\"organization_search\" placeholder=\"Informe o nome ou telefone da organização\">
@@ -150,8 +156,12 @@
 
                             <div class=\"form-group\">
                               <div class=\"col-md-11 col-md-offset-1\">
-                                <button type=\"submit\" class=\"btn btn-primary\">Salvar</button>
-                                <a href=\"/contact\" class=\"btn btn-default\">Cancelar</a>
+                                <button type=\"submit\" class=\"btn btn-primary\">
+                                    <i class=\"material-icons\" style=\"color: #009688\">&#xE161;</i> Salvar
+                                </button>
+                                <a href=\"/contact\" class=\"btn btn-default\">
+                                    Cancelar
+                                </a>
                               </div>
                             </div>
                           </fieldset>

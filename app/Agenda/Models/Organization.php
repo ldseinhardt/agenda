@@ -96,8 +96,8 @@ class Organization
 
     public function add($data)
     {
-        $name = $this->mysql->scape($data['name']);
-        $phone = $this->mysql->scape($data['phone']);
+        $name = $this->mysql->scape($data['name'] ?? '');
+        $phone = $this->mysql->scape($data['phone'] ?? '');
 
         $this->mysql->query("
             INSERT INTO `organizations` (`name`, `phone`) VALUE

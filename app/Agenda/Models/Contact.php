@@ -90,9 +90,11 @@ class Contact
               `emails`.`email` AS `email`,
               `contacts`.`primary_phone_id`,
               `phones`.`phone` AS `phone`,
+              `phones`.`type_id` AS `phone_type_id`,
               `phone_types`.`label` AS `phone_label`,
               `organizations`.`id` AS `organization_id`,
               `organizations`.`name` AS `organization`,
+              `organizations`.`phone` AS `organization_phone`,
               `address`.`address` AS `address`,
               `address`.`zip_code` AS `zip_code`,
               `address`.`district` AS `district`,
@@ -164,14 +166,14 @@ class Contact
 
     public function add($data)
     {
-        $first_name = $this->mysql->scape($data['first_name']);
-        $last_name = $this->mysql->scape($data['last_name']);
-        $organization_id = $this->mysql->scape($data['organization_id']);
+        $first_name = $this->mysql->scape($data['first_name'] ?? '');
+        $last_name = $this->mysql->scape($data['last_name'] ?? '');
+        $organization_id = $this->mysql->scape($data['organization_id'] ?? '');
 
-        $address = $this->mysql->scape($data['address']);
-        $zip_code = $this->mysql->scape($data['zip_code']);
-        $district = $this->mysql->scape($data['district']);
-        $city = $this->mysql->scape($data['city']);
+        $address = $this->mysql->scape($data['address'] ?? '');
+        $zip_code = $this->mysql->scape($data['zip_code'] ?? '');
+        $district = $this->mysql->scape($data['district'] ?? '');
+        $city = $this->mysql->scape($data['city'] ?? '');
 
         $this->mysql->query("
             INSERT INTO `contacts` (`first_name`, `last_name`, `created`, `modified`) VALUE
@@ -195,7 +197,7 @@ class Contact
             ");
         }
 
-        $length = count($data['phone']);
+        $length = count($data['phone'] ?? []);
         if ($length) {
             for ($i = 0; $i < $length; $i++) {
                 $index = $i + 1;
@@ -221,7 +223,7 @@ class Contact
             ");
         }
 
-        $length = count($data['email']);
+        $length = count($data['email'] ?? []);
         if ($length) {
             for ($i = 0; $i < $length; $i++) {
                 $index = $i + 1;

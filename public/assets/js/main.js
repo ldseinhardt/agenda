@@ -43,8 +43,8 @@
   /**
    * Ação do botão add telefone no formulário de contatos
    */
-  function btn_add_phone() {
-    var i = 1;
+  $('.btn-add-phone').on('click', function btn_add_phone() {
+    var i = 0;
     do {
       i++;
     } while ($('#box_phone_' + i).length);
@@ -70,7 +70,7 @@
     html += '          </div>';
     html += '        </div>';
     html += '    </div>';
-    html += '    <div class="col-md-2">';
+    html += '    <div class="col-md-3">';
     html += '        <div class="form-group">';
     html += '          <div class="radio radio-primary">';
     html += '            <label>';
@@ -79,11 +79,8 @@
     html += '          </div>';
     html += '        </div>';
     html += '    </div>';
-    html += '    <div class="col-md-3">';
+    html += '    <div class="col-md-2">';
     html += '        <div class="form-group">';
-    html += '            <a href="javascript:void(0)" class="btn btn-primary btn-add-phone">';
-    html += '                <i class="material-icons" style="color: #009688">&#xE148;</i>';
-    html += '            </a>';
     html += '            <a href="javascript:void(0)" class="btn btn-primary btn-del-phone" data-target="#box_phone___i__">';
     html += '                <i class="material-icons" style="color: #fe6363">&#xE15D;</i>';
     html += '            </a>';
@@ -91,14 +88,10 @@
     html += '    </div>';
     html += '</div>';
     $('.after_phones').before(html.replace(/__i__/g, i));
-
     $.material.init();
-    $('.btn-add-phone').unbind('click', btn_add_phone);
-    $('.btn-add-phone').bind('click', btn_add_phone);
     $('.btn-del-phone').unbind('click', btn_del_phone);
     $('.btn-del-phone').bind('click', btn_del_phone);
-  }
-  $('.btn-add-phone').on('click', btn_add_phone);
+  });
 
   /**
    * Ação do botão del telefone no formulário de contatos
@@ -106,14 +99,11 @@
   function btn_del_phone() {
     if (confirm('Certeza que quer remover este campo de telefone?')) {
       var target = $(this).data('target');
-      if (/_1$/.test(target)) {
-        alert('Este campo não pode ser removido.');
-      } else {
-        if ($('[type=radio]', target).is(':checked')) {
-          $('#box_phone_1 [type=radio]').prop('checked', true);
-        }
-        $(target).remove();
+      if ($('[type=radio]', target).is(':checked')) {
+        var radio = $('[name=primary_phone_id]');
+        radio.length && $(radio[0]).prop('checked', true);
       }
+      $(target).remove();
     }
   }
   $('.btn-del-phone').on('click', btn_del_phone);
@@ -121,8 +111,8 @@
   /**
    * Ação do botão add email no formulário de contatos
    */
-  function btn_add_email() {
-    var i = 1;
+  $('.btn-add-email').on('click', function btn_add_email() {
+    var i = 0;
     do {
       i++;
     } while ($('#box_email_' + i).length);
@@ -136,7 +126,7 @@
     html += '          </div>';
     html += '        </div>';
     html += '    </div>';
-    html += '    <div class="col-md-3">';
+    html += '    <div class="col-md-4">';
     html += '        <div class="form-group">';
     html += '          <div class="radio radio-primary">';
     html += '            <label>';
@@ -145,11 +135,8 @@
     html += '          </div>';
     html += '        </div>';
     html += '    </div>';
-    html += '    <div class="col-md-3">';
+    html += '    <div class="col-md-2">';
     html += '        <div class="form-group">';
-    html += '            <a href="javascript:void(0)" class="btn btn-primary btn-add-email">';
-    html += '                <i class="material-icons" style="color: #009688">&#xE148;</i>';
-    html += '            </a>';
     html += '            <a href="javascript:void(0)" class="btn btn-primary btn-del-email" data-target="#box_email___i__">';
     html += '                <i class="material-icons" style="color: #fe6363">&#xE15D;</i>';
     html += '            </a>';
@@ -157,14 +144,10 @@
     html += '    </div>';
     html += '</div>';
     $('.after_emails').before(html.replace(/__i__/g, i));
-
     $.material.init();
-    $('.btn-add-email').unbind('click', btn_add_email);
-    $('.btn-add-email').bind('click', btn_add_email);
     $('.btn-del-email').unbind('click', btn_del_email);
     $('.btn-del-email').bind('click', btn_del_email);
-  }
-  $('.btn-add-email').on('click', btn_add_email);
+  });
 
   /**
    * Ação do botão del email no formulário de contatos
@@ -172,14 +155,11 @@
   function btn_del_email() {
     if (confirm('Certeza que quer remover este campo de email?')) {
       var target = $(this).data('target');
-      if (/_1$/.test(target)) {
-        alert('Este campo não pode ser removido.');
-      } else {
         if ($('[type=radio]', target).is(':checked')) {
-          $('#box_email_1 [type=radio]').prop('checked', true);
+          var radio = $('[name=primary_email_id]');
+          radio.length && $(radio[0]).prop('checked', true);
         }
         $(target).remove();
-      }
     }
   }
   $('.btn-del-email').on('click', btn_del_email);
