@@ -1,7 +1,7 @@
 <?php
-    $this->content = '<h1>Meus contatos</h1>';
+    $this->content = "
+        <h1>Meus contatos</h1>
 
-    $this->content .= "
         <div class=\"row\">
             <div style=\"padding: 0 15px\">
                 <div class=\"panel panel-default\">
@@ -11,7 +11,7 @@
 
     foreach ($this->contacts as $contact) {
         $info = '';
-        
+
         if ($contact->phone) {
             $info = $contact->phone;
         } else if ($contact->email) {

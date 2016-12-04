@@ -1,7 +1,7 @@
 <?php
-    $this->content = '<h1>Luan Einhardt</h1>';
+    $this->content = "
+        <h1>Luan Einhardt</h1>
 
-    $this->content .= "
         <div class=\"row\">
             <div style=\"padding: 0 15px\">
                 <div class=\"panel panel-default\">

@@ -78,7 +78,9 @@ class Organization
             $app->redirect('/organization/' . $id);
         }
 
-        $app->view('Organization/add');
+        $app->view('Organization/add', [
+            'error' => $request->getParam('error', 0)
+        ]);
     }
 
     /**
@@ -86,16 +88,30 @@ class Organization
      */
     public static function edit($id, $app, $request)
     {
-        if ($request->isPost()) {
-            $organization = new OrganizationModel($app);
+        $organization = new OrganizationModel($app);
 
+        $org = $organization->get($id);
+
+        if (!$org) {
+            $app->redirect('/organization');
+        }
+
+        if ($request->isPost()) {
             $data = $request->getData();
 
-             $organization->add(
-                $id,
-                $data['name'] ?? '',
-                $data['phone'] ?? ''
-            );
+            $entries = [
+                'name' => '',
+                'phone' => ''
+            ];
+
+            $edit = [];
+            foreach ($entries as $key => $default) {
+                $value = $data[$key] ?? $default;
+                if ($value !== $org->{$key}) {
+                    $edit[$key] = $value;
+                }
+            }
+            $organization->update($id, $edit);
 
             if ($request->isJson()) {
                 $app->json(true);
@@ -105,7 +121,8 @@ class Organization
         }
 
         $app->view('Organization/edit', [
-            'id' => $id
+            'id' => $id,
+            'organization' => $org
         ]);
     }
 

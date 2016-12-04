@@ -1,12 +1,12 @@
 <?php
-    $this->content = '<h1>Adicionar organização</h1>';
+    $this->content = "
+        <h1>Adicionar organização</h1>
 
-    $this->content .= "
         <div class=\"row\">
             <div style=\"padding: 0 15px\">
                 <div class=\"panel panel-default\">
                     <div class=\"panel-body\">
-                        <form method=\"POST\" action=\"/organization/add\" class=\"form-horizontal\">
+                        <form action=\"/organization/add\" method=\"POST\" class=\"form-horizontal\">
                           <fieldset>
                             <legend>Cadastro</legend>
 

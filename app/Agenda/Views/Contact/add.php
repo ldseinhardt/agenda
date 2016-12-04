@@ -1,13 +1,13 @@
 <?php
-    $this->content = '<h1>Adicionar contato</h1>';
+    $this->content = "
+        <h1>Adicionar contato</h1>
 
-    $this->content .= "
         <div class=\"row\">
             <div style=\"padding: 0 15px\">
                 <div class=\"panel panel-default\">
                     <div class=\"panel-body\">
 
-                        <form class=\"form-horizontal\">
+                        <form action=\"/contact/add\" method=\"POST\" class=\"form-horizontal\">
                           <fieldset>
                             <legend>Legend</legend>
                             <div class=\"form-group\">

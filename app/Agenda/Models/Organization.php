@@ -76,11 +76,26 @@ class Organization
         return $this->mysql->insert_id();
     }
 
-    public function update($id)
+    public function update($id, $entries)
     {
+        if (!count($entries)) {
+            return false;
+        }
+
         $id = $this->mysql->scape($id);
 
+        $sets = [];
+        foreach ($entries as $key => $value) {
+            $value = $this->mysql->scape($value);
+            $sets[] = "`{$key}` = '{$value}'";
+        }
+        $sets = implode(', ', $sets);
 
+        $this->mysql->query("
+            UPDATE `organizations` SET
+                {$sets}
+            WHERE `id` = {$id};
+        ");
 
         return $this->mysql->affected_rows() !== -1;
     }
