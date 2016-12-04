@@ -22,7 +22,7 @@ class Organization
     /**
      * Retorna todos as organizações
      */
-    public function all($q = null)
+    public function all($q = null, $l = null)
     {
         $search = '';
 
@@ -39,6 +39,16 @@ class Organization
             ";
         }
 
+        $limit = '';
+
+        if ($l) {
+            $l = $this->mysql->scape($l);
+
+            $limit = "
+                LIMIT {$l}
+            ";
+        }
+
         $query = $this->mysql->query("
             SELECT
                 `id`,
@@ -48,6 +58,7 @@ class Organization
                 `organizations`
             {$search}
             ORDER BY `id` DESC
+            {$limit}
         ");
 
         $data = [];

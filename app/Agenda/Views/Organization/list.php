@@ -17,7 +17,7 @@
         $this->content .= "
             <div class=\"list-group-item\">
               <div class=\"row-action-primary\">
-                <i class=\"material-icons\">&#xE7FD;</i>
+                <i class=\"material-icons\">&#xE84F;</i>
               </div>
               <div class=\"row-content\">
                 <div class=\"action-secondary\">

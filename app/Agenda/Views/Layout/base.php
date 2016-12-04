@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/vendor/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/vendor/bootstrap-material-design/dist/css/bootstrap-material-design.min.css">
     <link rel="stylesheet" href="/vendor/bootstrap-material-design/dist/css/ripples.min.css">
+    <link rel="stylesheet" href="/vendor/material-design-icons/iconfont/material-icons.css">
     <link rel="stylesheet" href="/assets/css/main.css">
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -73,6 +74,7 @@
     <script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/vendor/bootstrap-material-design/dist/js/material.min.js"></script>
     <script src="/vendor/bootstrap-material-design/dist/js/ripples.min.js"></script>
+    <script src="/vendor/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
     <script src="/assets/js/main.js"></script>
   </body>
 </html>

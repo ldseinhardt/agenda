@@ -15,7 +15,7 @@
       </ul>
       <form class="navbar-form navbar-left" action="/search">
         <div class="form-group">
-          <input type="text" name="q" class="form-control" placeholder="Pesquisar">
+          <input type="search" name="q" class="form-control" placeholder="Pesquisar">
         </div>
       </form>
     </div>

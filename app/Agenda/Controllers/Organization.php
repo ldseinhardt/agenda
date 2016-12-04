@@ -16,7 +16,10 @@ class Organization
     {
         $organization = new OrganizationModel($app);
 
-        $organizations = $organization->all();
+        $organizations = $organization->all(
+            $request->getParam('query'),
+            $request->getParam('limit')
+        );
 
         if ($request->isJson()) {
             $app->json($organizations);
