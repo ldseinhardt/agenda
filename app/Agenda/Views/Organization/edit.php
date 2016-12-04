@@ -1,7 +1,7 @@
 <?php
     $this->content = "
         <h1>Editar organização</h1>
-        
+
         <div class=\"row\">
             <div style=\"padding: 0 15px\">
                 <div class=\"panel panel-default\">

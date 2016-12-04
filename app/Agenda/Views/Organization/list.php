@@ -9,7 +9,7 @@
                         <div class=\"list-group\">
     ";
 
-    if (!count($this->contacts)) {
+    if (!count($this->organizations)) {
         $this->content .= "Não há organizações cadastradas.";
     }
 
