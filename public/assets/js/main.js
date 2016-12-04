@@ -3,7 +3,7 @@
   /**
    * Ação do botão flutuante de add
    */
-  $('.btn-add-action').on('click', function() {
+  $('.btn-add').on('click', function() {
     var default_controller = '/contact';
     if (/^\/contact/.test(location.pathname)) {
       if (!/^\/contact\/add\/?/.test(location.pathname)) {

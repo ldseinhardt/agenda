@@ -9,6 +9,10 @@
                         <div class=\"list-group\">
     ";
 
+    if (!count($this->contacts)) {
+        $this->content .= "Não há organizações cadastradas.";
+    }
+
     foreach ($this->organizations as $organization) {
         $this->content .= "
             <div class=\"list-group-item\">

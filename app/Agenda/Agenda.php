@@ -4,6 +4,8 @@ namespace Agenda;
 
 use Agenda\Controllers\Contact;
 use Agenda\Controllers\Organization;
+use Agenda\Models\Contact as ContactModel;
+use Agenda\Models\Organization as OrganizationModel;
 
 /**
  * Classe da aplicação agenda
@@ -23,9 +25,26 @@ class Agenda
      */
     public static function search($app, $request)
     {
-        $app->view('search', [
-            'search' => $request->getParam('q', '')
-        ]);
+        $q = $request->getParam('q', '');
+
+        $contact = new ContactModel($app);
+        $contacts = $contact->all($q);
+
+        $organization = new OrganizationModel($app);
+        $organizations = $organization->all($q);
+
+        $results = [
+            'contacts' => $contacts,
+            'organizations' => $organizations
+        ];
+
+        if ($request->isJson()) {
+            $app->json($results);
+        }
+
+        $results['search'] = $q;
+
+        $app->view('search', $results);
     }
 
     /**

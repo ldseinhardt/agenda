@@ -40,6 +40,14 @@ class MySQL
     }
 
     /**
+     * Executa várias consultas
+     */
+    public function multi_query($sql)
+    {
+        return $this->mysqli->multi_query($sql);
+    }
+
+    /**
      * Retorna o id da última inserção (auto_incremento)
      */
     public function insert_id()

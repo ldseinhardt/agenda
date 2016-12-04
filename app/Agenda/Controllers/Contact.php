@@ -74,7 +74,19 @@ class Contact
      */
     public static function delete($id, $app, $request)
     {
-        $app->render('Contact/delete: ' . $id);
+        $contact = new ContactModel($app);
+
+        $status = $contact->delete($id);
+
+        if ($request->isJson()) {
+            $app->json($status);
+        }
+
+        if (!$status) {
+            $app->redirect($request->getOrigin() . '?error=1');
+        }
+
+        $app->redirect('/contact');
     }
 
     /**
@@ -90,6 +102,6 @@ class Contact
 
         $router::add('/^\/contact\/(\d{1,8})\/edit\/?$/', [new self(), 'edit'], 'GET | POST');
 
-        $router::post('/^\/contact\/(\d{1,8})\/delete\/?$/', [new self(), 'delete'], 'GET | POST');
+        $router::add('/^\/contact\/(\d{1,8})\/delete\/?$/', [new self(), 'delete'], 'GET | POST');
     }
 }

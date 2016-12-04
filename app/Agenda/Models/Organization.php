@@ -22,8 +22,23 @@ class Organization
     /**
      * Retorna todos as organizações
      */
-    public function all()
+    public function all($q = null)
     {
+        $search = '';
+
+        if ($q) {
+            $q = $this->mysql->scape($q);
+
+            $q = "%{$q}%";
+
+            $search = "
+                WHERE (
+                    `name` LIKE '{$q}' OR
+                    `phone` LIKE '{$q}'
+                )
+            ";
+        }
+
         $query = $this->mysql->query("
             SELECT
                 `id`,
@@ -31,12 +46,13 @@ class Organization
                 `phone`
             FROM
                 `organizations`
+            {$search}
             ORDER BY `id` DESC
         ");
 
         $data = [];
 
-        if (!$query) {
+        if (!($query && $query->num_rows)) {
             return $data;
         }
 
@@ -62,7 +78,7 @@ class Organization
                 `id` = {$id}
         ");
 
-        return $query
+        return $query && $query->num_rows
             ? $query->fetch_object()
             : null;
     }
@@ -98,7 +114,7 @@ class Organization
         $this->mysql->query("
             UPDATE `organizations` SET
                 {$sets}
-            WHERE `id` = {$id};
+            WHERE `id` = {$id}
         ");
 
         return $this->mysql->affected_rows() !== -1;
@@ -108,13 +124,13 @@ class Organization
     {
         $id = $this->mysql->scape($id);
 
-        $query = $this->mysql->query("
+        $this->mysql->query("
             DELETE FROM
                 `organizations`
             WHERE
-                `id` = {$id};
+                `id` = {$id}
         ");
 
-        return $query && $this->mysql->affected_rows() !== -1;
+        return $this->mysql->affected_rows() !== -1;
     }
 }

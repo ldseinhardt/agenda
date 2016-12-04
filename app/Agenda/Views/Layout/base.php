@@ -57,7 +57,7 @@
                 <div class=\"container\">
                     {$this->content}
 
-                    <a href=\"javascript:void(0)\" title=\"Adicionar Contato ou Organização\" class=\"btn btn-primary btn-raised btn-fab btn-float-action btn-add-action\">
+                    <a href=\"javascript:void(0)\" title=\"Adicionar Contato ou Organização\" class=\"btn btn-primary btn-raised btn-fab btn-float btn-add\">
                         <i class=\"material-icons\">&#xE145;</i>
                     </a>
                 </div>

@@ -93,7 +93,7 @@ body {
   font-size: 25rem;
 }
 
-.btn-float-action {
+.btn-float {
   position: fixed !important;
   right: 15px;
   bottom: 15px;

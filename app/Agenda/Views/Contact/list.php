@@ -9,11 +9,16 @@
                         <div class=\"list-group\">
     ";
 
-    foreach ($this->contacts as $contact) {
-        $info = '';
+    if (!count($this->contacts)) {
+        $this->content .= "Não há contatos cadastrados.";
+    }
 
+    foreach ($this->contacts as $contact) {
+        $title = $contact->name ?? $contact->phone;
+
+        $info = '';
         if ($contact->phone) {
-            $info = $contact->phone;
+            $info = "{$contact->phone} ({$contact->phone_label})";
         } else if ($contact->email) {
             $info = $contact->email;
         } else if ($contact->organization) {
@@ -35,8 +40,8 @@
                     </a>
                 </div>
                 <h4 class=\"list-group-item-heading\" style=\"text-overflow: clip; overflow: hidden; white-space: nowrap\">
-                    <a href=\"/contact/{$contact->id}\" title=\"{$contact->first_name} {$contact->last_name}\">
-                        {$contact->first_name} {$contact->last_name}
+                    <a href=\"/contact/{$contact->id}\" title=\"{$title}\">
+                        {$title}
                     </a>
                 </h4>
                 <p class=\"list-group-item-text\">{$info}</p>
