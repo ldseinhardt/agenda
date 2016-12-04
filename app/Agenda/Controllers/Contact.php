@@ -33,8 +33,21 @@ class Contact
      */
     public static function view($id, $app, $request)
     {
+        $contact = new ContactModel($app);
+
+        $contact = $contact->get($id);
+
+        if ($request->isJson()) {
+            $app->json($contact);
+        }
+
+        if (!$contact) {
+            $app->redirect('/contact');
+        }
+
         $app->view('Contact/view', [
-            'id' => $id
+            'id' => $id,
+            'contact' => $contact
         ]);
     }
 

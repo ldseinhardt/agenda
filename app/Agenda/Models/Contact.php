@@ -31,9 +31,7 @@ class Contact
               `contacts`.`last_name`,
               `emails`.`email` AS `email`,
               `phones`.`phone` AS `phone`,
-              `organizations`.`name` AS `organization`,
-              `contacts`.`created`,
-              `contacts`.`modified`
+              `organizations`.`name` AS `organization`
             FROM
               `contacts`
               LEFT JOIN `emails` ON (`contacts`.`id` = `emails`.`contact_id` AND `contacts`.`primary_email_id` = `emails`.`id`)
@@ -43,6 +41,10 @@ class Contact
         ");
 
         $data = [];
+
+        if (!$query) {
+            return $data;
+        }
 
         while ($row = $query->fetch_object()) {
             $data[] = $row;
@@ -55,7 +57,28 @@ class Contact
     {
         $id = $this->mysql->scape($id);
 
-        return [];
+        $query = $this->mysql->query("
+            SELECT
+              `contacts`.`id`,
+              `contacts`.`first_name`,
+              `contacts`.`last_name`,
+              `emails`.`email` AS `email`,
+              `phones`.`phone` AS `phone`,
+              `organizations`.`name` AS `organization`,
+              `contacts`.`created`,
+              `contacts`.`modified`
+            FROM
+              `contacts`
+              LEFT JOIN `emails` ON (`contacts`.`id` = `emails`.`contact_id` AND `contacts`.`primary_email_id` = `emails`.`id`)
+              LEFT JOIN `phones` ON (`contacts`.`id` = `phones`.`contact_id` AND `contacts`.`primary_phone_id` = `phones`.`id`)
+              LEFT JOIN `organizations` ON (`contacts`.`organization_id` = `organizations`.`id`)
+            WHERE
+                `contacts`.`id` = '{$id}'
+        ");
+
+        return $query
+            ? $query->fetch_object()
+            : null;
     }
 
     public function add()

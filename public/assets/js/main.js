@@ -7,14 +7,14 @@
     var default_controller = '/contact';
     if (/^\/contact/.test(location.pathname)) {
       if (!/^\/contact\/add\/?/.test(location.pathname)) {
-        location.pathname = '/contact/add';
+        location.href = '/contact/add';
       }
     } else if (/^\/organization/.test(location.pathname)) {
       if (!/^\/organization\/add\/?/.test(location.pathname)) {
-        location.pathname = '/organization/add';
+        location.href = '/organization/add';
       }
     } else {
-      location.pathname = default_controller + '/add';
+      location.href = default_controller + '/add';
     }
   });
 
@@ -27,6 +27,18 @@
   } else if (/^\/organization/.test(location.pathname)) {
     navbar.find('li').last().addClass('active');
   }
+
+  /**
+   * Formata as datas
+   */
+  $('.datetime').each(function(i, e) {
+    try {
+      $(e).attr('data-default', $(e).text());
+      $(e).text(new Date($(e).text()).toLocaleString());
+    } catch (e) {
+
+    }
+  });
 
   /**
    * Inicializa o material design

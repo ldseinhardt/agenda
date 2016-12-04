@@ -36,6 +36,10 @@ class Organization
 
         $data = [];
 
+        if (!$query) {
+            return $data;
+        }
+
         while ($row = $query->fetch_object()) {
             $data[] = $row;
         }
@@ -55,10 +59,10 @@ class Organization
             FROM
                 `organizations`
             WHERE
-                `id` = {$id};
+                `id` = {$id}
         ");
 
-        return $query->num_rows
+        return $query
             ? $query->fetch_object()
             : null;
     }
@@ -111,6 +115,6 @@ class Organization
                 `id` = {$id};
         ");
 
-        return $this->mysql->affected_rows() !== -1;
+        return $query && $this->mysql->affected_rows() !== -1;
     }
 }
