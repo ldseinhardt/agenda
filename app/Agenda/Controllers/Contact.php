@@ -56,7 +56,25 @@ class Contact
      */
     public static function add($app, $request)
     {
-        $app->view('Contact/add');
+        if ($request->isPost()) {
+            $contact = new ContactModel($app);
+
+            $id = $contact->add($request->getData());
+
+            if ($request->isJson()) {
+                $app->json($id);
+            }
+
+            if (!$id) {
+                $app->redirect($request->getOrigin() . '?error=1');
+            }
+
+            $app->redirect('/contact/' . $id);
+        }
+
+        $app->view('Contact/add', [
+            'error' => $request->getParam('error')
+        ]);
     }
 
     /**

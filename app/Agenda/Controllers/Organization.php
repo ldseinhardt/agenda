@@ -27,7 +27,7 @@ class Organization
 
         $app->view('Organization/list', [
             'organizations' => $organizations,
-            'error' => $request->getParam('error', 0)
+            'error' => $request->getParam('error')
         ]);
     }
 
@@ -51,7 +51,7 @@ class Organization
         $app->view('Organization/view', [
             'id' => $id,
             'organization' => $organization,
-            'error' => $request->getParam('error', 0)
+            'error' => $request->getParam('error')
         ]);
     }
 
@@ -63,12 +63,7 @@ class Organization
         if ($request->isPost()) {
             $organization = new OrganizationModel($app);
 
-            $data = $request->getData();
-
-            $id = $organization->add(
-                $data['name'] ?? '',
-                $data['phone'] ?? ''
-            );
+            $id = $organization->add($request->getData());
 
             if ($request->isJson()) {
                 $app->json($id);
@@ -82,7 +77,7 @@ class Organization
         }
 
         $app->view('Organization/add', [
-            'error' => $request->getParam('error', 0)
+            'error' => $request->getParam('error')
         ]);
     }
 

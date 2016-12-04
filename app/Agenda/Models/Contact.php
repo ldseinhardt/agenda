@@ -162,9 +162,88 @@ class Contact
         return $data;
     }
 
-    public function add()
+    public function add($data)
     {
+        $first_name = $this->mysql->scape($data['first_name']);
+        $last_name = $this->mysql->scape($data['last_name']);
+        $organization_id = $this->mysql->scape($data['organization_id']);
 
+        $address = $this->mysql->scape($data['address']);
+        $zip_code = $this->mysql->scape($data['zip_code']);
+        $district = $this->mysql->scape($data['district']);
+        $city = $this->mysql->scape($data['city']);
+
+        $this->mysql->query("
+            INSERT INTO `contacts` (`first_name`, `last_name`, `created`, `modified`) VALUE
+              ('{$first_name}', '{$last_name}', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+        ");
+
+        $id = $this->mysql->insert_id();
+
+        if ($organization_id) {
+            $this->mysql->query("
+                UPDATE `contacts` SET
+                  `organization_id` = '{$organization_id}'
+                WHERE `id` = {$id}
+            ");
+        }
+
+        if ($address || $zip_code || $district || $city) {
+            $this->mysql->query("
+                INSERT INTO `address` (`contact_id`, `address`, `zip_code`, `district`, `city`) VALUE
+                  ('{$id}', '{$address}', '{$zip_code}', '{$district}', '{$city}')
+            ");
+        }
+
+        $length = count($data['phone']);
+        if ($length) {
+            for ($i = 0; $i < $length; $i++) {
+                $index = $i + 1;
+                $phone = $this->mysql->scape($data['phone'][$i]);
+                $type_id = $this->mysql->scape($data['phone_type_id'][$i]);
+                if ($type_id < 1 || $type_id > 3) {
+                    $type_id = 1;
+                }
+                $this->mysql->query("
+                    INSERT INTO `phones` (`contact_id`, `id`, `type_id`, `phone`) VALUE
+                      ('{$id}', '{$index}', '{$type_id}', '{$phone}')
+                ");
+            }
+
+            $primary_phone_id = $this->mysql->scape($data['primary_phone_id']);
+            if ($primary_phone_id > $length) {
+                $primary_phone_id = 1;
+            }
+            $this->mysql->query("
+                UPDATE `contacts` SET
+                  `primary_phone_id` = '{$primary_phone_id}'
+                WHERE `id` = {$id}
+            ");
+        }
+
+        $length = count($data['email']);
+        if ($length) {
+            for ($i = 0; $i < $length; $i++) {
+                $index = $i + 1;
+                $email = $this->mysql->scape($data['email'][$i]);
+                $this->mysql->query("
+                    INSERT INTO `emails` (`contact_id`, `id`, `email`) VALUE
+                      ('{$id}', '{$index}', '{$email}')
+                ");
+            }
+
+            $primary_email_id = $this->mysql->scape($data['primary_email_id']);
+            if ($primary_email_id > $length) {
+                $primary_email_id = 1;
+            }
+            $this->mysql->query("
+                UPDATE `contacts` SET
+                  `primary_email_id` = '{$primary_email_id}'
+                WHERE `id` = {$id}
+            ");
+        }
+
+        return $id;
     }
 
     public function update($id, $entries)

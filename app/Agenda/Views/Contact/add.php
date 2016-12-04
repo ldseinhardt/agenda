@@ -163,4 +163,14 @@
         </div>
     ";
 
+    if ($this->error === '1') {
+        $this->content .= "
+            <script>
+                setTimeout(function() {
+                    alert('Houve algum erro ao salvar o contato!');
+                }, 100);
+            </script>
+        ";
+    }
+
     $this->include('Layout/base');

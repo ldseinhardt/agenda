@@ -94,10 +94,10 @@ class Organization
             : null;
     }
 
-    public function add($name, $phone)
+    public function add($data)
     {
-        $name = $this->mysql->scape($name);
-        $phone = $this->mysql->scape($phone);
+        $name = $this->mysql->scape($data['name']);
+        $phone = $this->mysql->scape($data['phone']);
 
         $this->mysql->query("
             INSERT INTO `organizations` (`name`, `phone`) VALUE
@@ -107,16 +107,16 @@ class Organization
         return $this->mysql->insert_id();
     }
 
-    public function update($id, $entries)
+    public function update($id, $data)
     {
-        if (!count($entries)) {
+        if (!count($data)) {
             return false;
         }
 
         $id = $this->mysql->scape($id);
 
         $sets = [];
-        foreach ($entries as $key => $value) {
+        foreach ($data as $key => $value) {
             $value = $this->mysql->scape($value);
             $sets[] = "`{$key}` = '{$value}'";
         }
