@@ -22,8 +22,8 @@ class Request
      */
     function __construct()
     {
-        $this->method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
-        $this->uri = $_SERVER['SCRIPT_NAME'] ?? '/';
+        $this->method = $_SERVER['REQUEST_METHOD'];
+        $this->uri = explode('?', $_SERVER['REQUEST_URI'])[0];
         $this->origin = $_SERVER['HTTP_REFERER'] ?? '/';
         $this->accept = $_SERVER['HTTP_ACCEPT'] ?? '';
         $this->params = $_GET ?? [];
