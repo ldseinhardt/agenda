@@ -22,6 +22,7 @@ class MySQL
             $db['host'], $db['username'], $db['password'], $db['database']
         );
         if (mysqli_connect_errno()) {
+            echo '<h1>Erro ao conectar ao banco de dados.</h1>';
             exit();
         }
         $this->mysqli->set_charset($db['charset']);

@@ -22,13 +22,13 @@ $app = new App([
 /**
  * Configurações de banco de dados
  */
-$app->set('database', [
-    'host' => 'localhost',
-    'username' => 'root',
-    'password' => 'test123',
-    'database' => 'agenda',
-    'charset' => 'utf8'
-]);
+ $app->set('database', [
+     'host' => 'localhost',
+     'username' => 'root',
+     'password' => 'test123',
+     'database' => 'agenda',
+     'charset' => 'utf8'
+ ]);
 
 /**
  * Pasta padrão das views
@@ -54,5 +54,10 @@ $app->on('/^\/(assets|vendor)\/(.+)\/?$/', [
     'assets' => __DIR__ . '/../public/assets/',
     'vendor' => __DIR__ . '/../bower_components/'
 ]);
+
+/**
+ * Configura o Timezone
+ */
+date_default_timezone_set('UTC');
 
 return $app;

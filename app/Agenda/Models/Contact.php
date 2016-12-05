@@ -172,10 +172,11 @@ class Contact
     {
         $first_name = $this->mysql->scape($data['first_name'] ?? '');
         $last_name = $this->mysql->scape($data['last_name'] ?? '');
+        $datetime = date('Y-m-d H:i:s');
 
         $this->mysql->query("
             INSERT INTO `contacts` (`first_name`, `last_name`, `created`, `modified`) VALUE
-                ('{$first_name}', '{$last_name}', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+                ('{$first_name}', '{$last_name}', '{$datetime}', '{$datetime}')
         ");
 
         $id = $this->mysql->insert_id();
@@ -191,6 +192,7 @@ class Contact
 
         $first_name = $this->mysql->scape($data['first_name'] ?? '');
         $last_name = $this->mysql->scape($data['last_name'] ?? '');
+        $datetime = date('Y-m-d H:i:s');
 
         $this->mysql->query("
             UPDATE `contacts` SET
@@ -199,7 +201,7 @@ class Contact
                 `primary_email_id` = NULL,
                 `primary_phone_id` = NULL,
                 `organization_id` = NULL,
-                `modified` = CURRENT_TIMESTAMP
+                `modified` = '{$datetime}'
             WHERE
                 `id` = {$id}
         ");

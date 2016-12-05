@@ -36,12 +36,8 @@
    * Formata as datas
    */
   $('.datetime').each(function(i, e) {
-    try {
-      $(e).attr('data-default', $(e).text());
-      $(e).text(new Date($(e).text()).toLocaleString());
-    } catch (e) {
-
-    }
+    $(e).attr('data-default', $(e).text());
+    $(e).text(new Date($(e).text().replace(/\s/, 'T')).toLocaleString());
   });
 
   /**
