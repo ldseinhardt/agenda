@@ -1,3 +1,9 @@
+<!--
+/**
+ * Luan Einhardt
+ * Contato: ldseinhardt@gmail.com
+ */
+ -->
 <!DOCTYPE html>
 <html lang="pt-br" dir="ltr" class="no-js">
     <head>
@@ -7,8 +13,8 @@
         <script>(function(d) { d.className = d.className.replace(/\bno-js/, 'js'); })(document.documentElement);</script>
         <title>Agenda</title>
         <link rel="icon" type="image/png" href="/assets/images/favicon.png">
-        <meta name="description" content="">
-        <meta name="keywords" content="">
+        <meta name="description" content="Cadastre seus contatos...">
+        <meta name="keywords" content="agenda, contatos, organizações, empresas">
         <meta name="robots" content="index, follow">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
         <link rel="stylesheet" href="/vendor/bootstrap/dist/css/bootstrap.min.css">
@@ -27,27 +33,27 @@
         <!-- Facebook -->
        <meta property="og:type" content="website">
        <meta property="og:locale" content="pt_BR">
-       <meta property="og:url" content="">
+       <meta property="og:url" content="<?= $this->base?>">
        <meta property="og:title" content="Agenda">
        <meta property="og:site_name" content="Agenda">
-       <meta property="og:description" content="">
-       <meta property="og:image" content="">
-       <meta property="og:image:type" content="image/jpg">
-       <meta property="og:image:width" content="256">
-       <meta property="og:image:height" content="256">
+       <meta property="og:description" content="Cadastre seus contatos...">
+       <meta property="og:image" content="<?= $this->base?>assets/images/screen.png">
+       <meta property="og:image:type" content="image/png">
+       <meta property="og:image:width" content="1024">
+       <meta property="og:image:height" content="768">
        <!-- Twitter -->
        <meta name="twitter:card" content="summary">
-       <meta name="twitter:image" content="">
+       <meta name="twitter:image" content="<?= $this->base?>assets/images/screen.png">
        <meta name="twitter:site" content="@ldseinhardt">
        <meta name="twitter:creator" content="@ldseinhardt">
-       <meta name="twitter:url" content="">
+       <meta name="twitter:url" content="<?= $this->base?>">
        <meta name="twitter:title" content="Agenda">
-       <meta name="twitter:description" content="">
+       <meta name="twitter:description" content="Cadastre seus contatos...">
        <!-- Google+ / Schema.org -->
        <link href="https://plus.google.com/u/0/105603009531136678236" rel="publisher">
        <meta itemprop="name" content="Agenda">
-       <meta itemprop="description" content="">
-       <meta itemprop="image" content="">
+       <meta itemprop="description" content="Cadastre seus contatos...">
+       <meta itemprop="image" content="<?= $this->base?>assets/images/screen.png">
     </head>
     <body id="home">
         <?php

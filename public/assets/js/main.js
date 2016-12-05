@@ -1,4 +1,8 @@
-;(function($, undefined) {
+/**
+ * Luan Einhardt
+ * Contato: ldseinhardt@gmail.com
+ */
+ ;(function($, undefined) {
 
   /**
    * Ação do botão flutuante de add

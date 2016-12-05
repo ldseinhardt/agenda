@@ -1,4 +1,10 @@
-<div class="navbar navbar-default navbar-fixed-top">
+<?php
+/**
+ * Luan Einhardt
+ * Contato: ldseinhardt@gmail.com
+ */
+?>
+ <div class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">

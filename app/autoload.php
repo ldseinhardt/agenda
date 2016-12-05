@@ -1,4 +1,8 @@
 <?php
+/**
+ * Luan Einhardt
+ * Contato: ldseinhardt@gmail.com
+ */
 
 /**
  * Carrega todas as classes a partir do namespace

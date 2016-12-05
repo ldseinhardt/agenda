@@ -1,4 +1,8 @@
 <?php
+/**
+ * Luan Einhardt
+ * Contato: ldseinhardt@gmail.com
+ */
 
 require_once __DIR__ . '/autoload.php';
 

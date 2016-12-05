@@ -1,3 +1,6 @@
+-- Luan Einhardt <ldseinhardt@gmail.com>
+-- mysql > source test.sql
+
 INSERT INTO `organizations` (`id`, `phone`, `name`) VALUES
   (1, '+555332710001', 'Empresa A'),
   (2, '+555332710002', 'Empresa B'),
