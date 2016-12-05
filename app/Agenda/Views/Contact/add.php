@@ -74,7 +74,7 @@ $this->content = "
                             </div>
 
                             <div class=\"row\" id=\"box_phone_1\">
-                                <div class=\"col-md-4\">
+                                <div class=\"col-xs-12 col-md-4\">
                                     <div class=\"form-group\">
                                         <label for=\"phone_1\" class=\"col-md-3 control-label\">Telefone</label>
                                         <div class=\"col-md-9\">
@@ -82,7 +82,7 @@ $this->content = "
                                         </div>
                                     </div>
                                 </div>
-                                <div class=\"col-md-3\">
+                                <div class=\"col-xs-12 col-md-3\">
                                     <div class=\"form-group\">
                                         <label for=\"phone_type_1\" class=\"col-md-2 control-label\">Tipo</label>
                                         <div class=\"col-md-10\">
@@ -94,7 +94,7 @@ $this->content = "
                                         </div>
                                     </div>
                                 </div>
-                                <div class=\"col-md-3\">
+                                <div class=\"col-xs-7 col-xs-offset-1 col-md-3 col-md-offset-0\">
                                     <div class=\"form-group\">
                                         <div class=\"radio radio-primary\">
                                             <label>
@@ -103,7 +103,7 @@ $this->content = "
                                         </div>
                                     </div>
                                 </div>
-                                <div class=\"col-md-2\">
+                                <div class=\"col-xs-4 col-md-2\">
                                     <div class=\"form-group\">
                                         <a href=\"javascript:void(0)\" class=\"btn btn-primary btn-del-phone\" data-target=\"#box_phone_1\">
                                             <i class=\"material-icons\" style=\"color: #fe6363\">&#xE15D;</i>
@@ -119,7 +119,7 @@ $this->content = "
                             </div>
 
                             <div class=\"row\" id=\"box_email_1\">
-                                <div class=\"col-md-6\">
+                                <div class=\"col-xs-12 col-md-6\">
                                     <div class=\"form-group\">
                                         <label for=\"email_1\" class=\"col-md-2 control-label\">Email</label>
                                         <div class=\"col-md-10\">
@@ -127,7 +127,7 @@ $this->content = "
                                         </div>
                                     </div>
                                 </div>
-                                <div class=\"col-md-4\">
+                                <div class=\"col-xs-7 col-xs-offset-1 col-md-4 col-md-offset-0\">
                                     <div class=\"form-group\">
                                         <div class=\"radio radio-primary\">
                                             <label>
@@ -136,7 +136,7 @@ $this->content = "
                                         </div>
                                     </div>
                                 </div>
-                                <div class=\"col-md-2\">
+                                <div class=\"col-xs-4 col-md-2\">
                                     <div class=\"form-group\">
                                         <a href=\"javascript:void(0)\" class=\"btn btn-primary btn-del-email\" data-target=\"#box_email_1\">
                                             <i class=\"material-icons\" style=\"color: #fe6363\">&#xE15D;</i>

@@ -50,7 +50,7 @@
     } while ($('#box_phone_' + i).length);
     var html = '';
     html += '<div class="row" id="box_phone___i__">';
-    html += '  <div class="col-md-4">';
+    html += '  <div class="col-xs-12 col-md-4">';
     html += '        <div class="form-group">';
     html += '          <label for="phone___i__" class="col-md-3 control-label">Telefone</label>';
     html += '          <div class="col-md-9">';
@@ -58,7 +58,7 @@
     html += '          </div>';
     html += '        </div>';
     html += '    </div>';
-    html += '    <div class="col-md-3">';
+    html += '    <div class="col-xs-12 col-md-3">';
     html += '        <div class="form-group">';
     html += '          <label for="phone_type___i__" class="col-md-2 control-label">Tipo</label>';
     html += '          <div class="col-md-10">';
@@ -70,7 +70,7 @@
     html += '          </div>';
     html += '        </div>';
     html += '    </div>';
-    html += '    <div class="col-md-3">';
+    html += '    <div class="col-xs-7 col-xs-offset-1 col-md-3 col-md-offset-0">';
     html += '        <div class="form-group">';
     html += '          <div class="radio radio-primary">';
     html += '            <label>';
@@ -79,7 +79,7 @@
     html += '          </div>';
     html += '        </div>';
     html += '    </div>';
-    html += '    <div class="col-md-2">';
+    html += '    <div class="col-xs-4 col-md-2">';
     html += '        <div class="form-group">';
     html += '            <a href="javascript:void(0)" class="btn btn-primary btn-del-phone" data-target="#box_phone___i__">';
     html += '                <i class="material-icons" style="color: #fe6363">&#xE15D;</i>';
@@ -120,7 +120,7 @@
     } while ($('#box_email_' + i).length);
     var html = '';
     html += '<div class="row" id="box_email___i__">';
-    html += '    <div class="col-md-6">';
+    html += '    <div class="col-xs-12 col-md-6">';
     html += '        <div class="form-group">';
     html += '          <label for="email___i__" class="col-md-2 control-label">Email</label>';
     html += '          <div class="col-md-10">';
@@ -128,7 +128,7 @@
     html += '          </div>';
     html += '        </div>';
     html += '    </div>';
-    html += '    <div class="col-md-4">';
+    html += '    <div class="col-xs-7 col-xs-offset-1 col-md-4 col-md-offset-0">';
     html += '        <div class="form-group">';
     html += '          <div class="radio radio-primary">';
     html += '            <label>';
@@ -137,7 +137,7 @@
     html += '          </div>';
     html += '        </div>';
     html += '    </div>';
-    html += '    <div class="col-md-2">';
+    html += '    <div class="col-xs-4 col-md-2">';
     html += '        <div class="form-group">';
     html += '            <a href="javascript:void(0)" class="btn btn-primary btn-del-email" data-target="#box_email___i__">';
     html += '                <i class="material-icons" style="color: #fe6363">&#xE15D;</i>';

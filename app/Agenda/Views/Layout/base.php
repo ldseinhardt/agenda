@@ -27,7 +27,7 @@
             <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
         <!-- Mobile -->
-        <meta name="theme-color" content="#000000">
+        <meta name="theme-color" content="#009688">
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <!-- Facebook -->
