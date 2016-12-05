@@ -22,13 +22,13 @@ $app = new App([
 /**
  * Configurações de banco de dados
  */
- $app->set('database', [
-     'host' => 'localhost',
-     'username' => 'root',
-     'password' => 'test123',
-     'database' => 'agenda',
-     'charset' => 'utf8'
- ]);
+$app->set('database', [
+    'host' => 'localhost',
+    'username' => 'root',
+    'password' => 'test123',
+    'database' => 'agenda',
+    'charset' => 'utf8'
+]);
 
 /**
  * Pasta padrão das views
