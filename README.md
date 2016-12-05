@@ -55,6 +55,11 @@ $app->set('database', [
   'charset' => 'utf8'
 ]);
 ```
+
+## Diagrama EER do banco de dados
+
+![](docs/database/agenda.png)
+
 ## Instalar os components do frontend
 
 ```bash
