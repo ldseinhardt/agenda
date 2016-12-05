@@ -101,7 +101,7 @@ class Organization
 
         $this->mysql->query("
             INSERT INTO `organizations` (`name`, `phone`) VALUE
-              ('{$name}', '$phone')
+                ('{$name}', '$phone')
         ");
 
         return $this->mysql->insert_id();
@@ -109,10 +109,6 @@ class Organization
 
     public function update($id, $data)
     {
-        if (!count($data)) {
-            return false;
-        }
-
         $id = $this->mysql->scape($id);
 
         $sets = [];
@@ -125,7 +121,8 @@ class Organization
         $this->mysql->query("
             UPDATE `organizations` SET
                 {$sets}
-            WHERE `id` = {$id}
+            WHERE
+                `id` = {$id}
         ");
 
         return $this->mysql->affected_rows() !== -1;

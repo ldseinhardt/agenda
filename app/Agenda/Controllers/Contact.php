@@ -59,7 +59,36 @@ class Contact
         if ($request->isPost()) {
             $contact = new ContactModel($app);
 
-            $id = $contact->add($request->getData());
+            $data = $request->getData();
+
+            if (isset($data['phone'])) {
+                for ($i = count($data['phone']) - 1; $i >= 0; $i--) {
+                    if (!$data['phone'][$i]) {
+                        array_splice($data['phone'], $i, 1);
+                        array_splice($data['phone_type_id'], $i, 1);
+                        if ($data['primary_phone_id'] == $i + 1) {
+                            $data['primary_phone_id'] = 1;
+                        } else if ($data['primary_phone_id'] > $i + 1) {
+                            $data['primary_phone_id']--;
+                        }
+                    }
+                }
+            }
+
+            if (isset($data['email'])) {
+                for ($i = count($data['email']) - 1; $i >= 0; $i--) {
+                    if (!$data['email'][$i]) {
+                        array_splice($data['email'], $i, 1);
+                        if ($data['primary_email_id'] == $i + 1) {
+                            $data['primary_email_id'] = 1;
+                        } else if ($data['primary_email_id'] > $i + 1) {
+                            $data['primary_email_id']--;
+                        }
+                    }
+                }
+            }
+
+            $id = $contact->add($data);
 
             if ($request->isJson()) {
                 $app->json($id);
@@ -93,22 +122,34 @@ class Contact
         if ($request->isPost()) {
             $data = $request->getData();
 
-            /*
-            $entries = [
-                'name' => '',
-                'phone' => ''
-            ];
-
-            $edit = [];
-            foreach ($entries as $key => $default) {
-                $value = $data[$key] ?? $default;
-                if ($value !== $original->{$key}) {
-                    $edit[$key] = $value;
+            if (isset($data['phone'])) {
+                for ($i = count($data['phone']) - 1; $i >= 0; $i--) {
+                    if (!$data['phone'][$i]) {
+                        array_splice($data['phone'], $i, 1);
+                        array_splice($data['phone_type_id'], $i, 1);
+                        if ($data['primary_phone_id'] == $i + 1) {
+                            $data['primary_phone_id'] = 1;
+                        } else if ($data['primary_phone_id'] > $i + 1) {
+                            $data['primary_phone_id']--;
+                        }
+                    }
                 }
             }
-            $contact->update($id, $edit);
 
-            */
+            if (isset($data['email'])) {
+                for ($i = count($data['email']) - 1; $i >= 0; $i--) {
+                    if (!$data['email'][$i]) {
+                        array_splice($data['email'], $i, 1);
+                        if ($data['primary_email_id'] == $i + 1) {
+                            $data['primary_email_id'] = 1;
+                        } else if ($data['primary_email_id'] > $i + 1) {
+                            $data['primary_email_id']--;
+                        }
+                    }
+                }
+            }
+
+            $contact->update($id, $data);
 
             if ($request->isJson()) {
                 $app->json(true);

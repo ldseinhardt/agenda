@@ -96,20 +96,12 @@ class Organization
 
         if ($request->isPost()) {
             $data = $request->getData();
-
-            $entries = [
-                'name' => '',
-                'phone' => ''
-            ];
-
-            $edit = [];
-            foreach ($entries as $key => $default) {
-                $value = $data[$key] ?? $default;
+            foreach ($data as $key => $value) {
                 if ($value !== $original->{$key}) {
-                    $edit[$key] = $value;
+                    $organization->update($id, $data);
+                    break;
                 }
             }
-            $organization->update($id, $edit);
 
             if ($request->isJson()) {
                 $app->json(true);

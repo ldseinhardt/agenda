@@ -91,6 +91,7 @@
     $.material.init();
     $('.btn-del-phone').unbind('click', btn_del_phone);
     $('.btn-del-phone').bind('click', btn_del_phone);
+    $($('#box_phone_' + i + ' input')[0]).focus();
   });
 
   /**
@@ -99,11 +100,12 @@
   function btn_del_phone() {
     if (confirm('Certeza que quer remover este campo de telefone?')) {
       var target = $(this).data('target');
-      if ($('[type=radio]', target).is(':checked')) {
+      var checked = $('[type=radio]', target).is(':checked');
+      $(target).remove();
+      if (checked) {
         var radio = $('[name=primary_phone_id]');
         radio.length && $(radio[0]).prop('checked', true);
       }
-      $(target).remove();
     }
   }
   $('.btn-del-phone').on('click', btn_del_phone);
@@ -147,6 +149,7 @@
     $.material.init();
     $('.btn-del-email').unbind('click', btn_del_email);
     $('.btn-del-email').bind('click', btn_del_email);
+    $($('#box_email_' + i + ' input')[0]).focus();
   });
 
   /**
@@ -155,11 +158,12 @@
   function btn_del_email() {
     if (confirm('Certeza que quer remover este campo de email?')) {
       var target = $(this).data('target');
-        if ($('[type=radio]', target).is(':checked')) {
+        var checked = $('[type=radio]', target).is(':checked');
+        $(target).remove();
+        if (checked) {
           var radio = $('[name=primary_email_id]');
           radio.length && $(radio[0]).prop('checked', true);
         }
-        $(target).remove();
     }
   }
   $('.btn-del-email').on('click', btn_del_email);

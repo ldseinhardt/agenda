@@ -16,25 +16,25 @@
     foreach ($this->organizations as $organization) {
         $this->content .= "
             <div class=\"list-group-item\">
-              <div class=\"row-action-primary\">
-                <i class=\"material-icons\">&#xE84F;</i>
-              </div>
-              <div class=\"row-content\">
-                <div class=\"action-secondary\">
-                    <a href=\"/organization/{$organization->id}/edit\">
-                        <i class=\"material-icons\" style=\"color: #009688\">&#xE254;</i>
-                    </a>
-                    <a href=\"/organization/{$organization->id}/delete\" onclick=\"return confirm('Certeza que quer remover esta organização?')\">
-                        <i class=\"material-icons\" style=\"color: #fe6363\">&#xE872;</i>
-                    </a>
+                <div class=\"row-action-primary\">
+                    <i class=\"material-icons\">&#xE84F;</i>
                 </div>
-                <h4 class=\"list-group-item-heading\" style=\"text-overflow: clip; overflow: hidden; white-space: nowrap\">
-                    <a href=\"/organization/{$organization->id}\" title=\"{$organization->name}\">
-                        {$organization->name}
-                    </a>
-                </h4>
-                <p class=\"list-group-item-text\">{$organization->phone}</p>
-              </div>
+                <div class=\"row-content\">
+                    <div class=\"action-secondary\">
+                        <a href=\"/organization/{$organization->id}/edit\">
+                            <i class=\"material-icons\" style=\"color: #009688\">&#xE254;</i>
+                        </a>
+                        <a href=\"/organization/{$organization->id}/delete\" onclick=\"return confirm('Certeza que quer remover esta organização?')\">
+                            <i class=\"material-icons\" style=\"color: #fe6363\">&#xE872;</i>
+                        </a>
+                    </div>
+                    <h4 class=\"list-group-item-heading\" style=\"text-overflow: clip; overflow: hidden; white-space: nowrap\">
+                        <a href=\"/organization/{$organization->id}\" title=\"{$organization->name}\">
+                            {$organization->name}
+                        </a>
+                    </h4>
+                    <p class=\"list-group-item-text\">{$organization->phone}</p>
+                </div>
             </div>
             <div class=\"list-group-separator\"></div>
         ";

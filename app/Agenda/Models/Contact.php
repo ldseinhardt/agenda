@@ -45,21 +45,21 @@ class Contact
 
         $query = $this->mysql->query("
             SELECT
-              `contacts`.`id`,
-              `contacts`.`first_name`,
-              `contacts`.`last_name`,
-              CONCAT_WS(' ', `contacts`.`first_name`, `contacts`.`last_name`) as `name`,
-              `emails`.`email` AS `email`,
-              `phones`.`phone` AS `phone`,
-              `phone_types`.`label` AS `phone_label`,
-              `organizations`.`name` AS `organization`
+                `contacts`.`id`,
+                `contacts`.`first_name`,
+                `contacts`.`last_name`,
+                CONCAT_WS(' ', `contacts`.`first_name`, `contacts`.`last_name`) as `name`,
+                `emails`.`email` AS `email`,
+                `phones`.`phone` AS `phone`,
+                `phone_types`.`label` AS `phone_label`,
+                `organizations`.`name` AS `organization`
             FROM
-              `contacts`
-              LEFT JOIN `emails` ON (`contacts`.`id` = `emails`.`contact_id` AND `contacts`.`primary_email_id` = `emails`.`id`)
-              LEFT JOIN `phones` ON (`contacts`.`id` = `phones`.`contact_id` AND `contacts`.`primary_phone_id` = `phones`.`id`)
-              LEFT JOIN `phone_types` ON (`phones`.`type_id` = `phone_types`.`id`)
-              LEFT JOIN `organizations` ON (`contacts`.`organization_id` = `organizations`.`id`)
-             {$search}
+                `contacts`
+                LEFT JOIN `emails` ON (`contacts`.`id` = `emails`.`contact_id` AND `contacts`.`primary_email_id` = `emails`.`id`)
+                LEFT JOIN `phones` ON (`contacts`.`id` = `phones`.`contact_id` AND `contacts`.`primary_phone_id` = `phones`.`id`)
+                LEFT JOIN `phone_types` ON (`phones`.`type_id` = `phone_types`.`id`)
+                LEFT JOIN `organizations` ON (`contacts`.`organization_id` = `organizations`.`id`)
+            {$search}
             ORDER BY `id` DESC
         ");
 
@@ -82,32 +82,32 @@ class Contact
 
         $query = $this->mysql->query("
             SELECT
-              `contacts`.`id`,
-              `contacts`.`first_name`,
-              `contacts`.`last_name`,
-              CONCAT_WS(' ', `contacts`.`first_name`, `contacts`.`last_name`) as `name`,
-              `contacts`.`primary_email_id`,
-              `emails`.`email` AS `email`,
-              `contacts`.`primary_phone_id`,
-              `phones`.`phone` AS `phone`,
-              `phones`.`type_id` AS `phone_type_id`,
-              `phone_types`.`label` AS `phone_label`,
-              `organizations`.`id` AS `organization_id`,
-              `organizations`.`name` AS `organization`,
-              `organizations`.`phone` AS `organization_phone`,
-              `address`.`address` AS `address`,
-              `address`.`zip_code` AS `zip_code`,
-              `address`.`district` AS `district`,
-              `address`.`city` AS `city`,
-              `contacts`.`created`,
-              `contacts`.`modified`
+                `contacts`.`id`,
+                `contacts`.`first_name`,
+                `contacts`.`last_name`,
+                CONCAT_WS(' ', `contacts`.`first_name`, `contacts`.`last_name`) as `name`,
+                `contacts`.`primary_email_id`,
+                `emails`.`email` AS `email`,
+                `contacts`.`primary_phone_id`,
+                `phones`.`phone` AS `phone`,
+                `phones`.`type_id` AS `phone_type_id`,
+                `phone_types`.`label` AS `phone_label`,
+                `organizations`.`id` AS `organization_id`,
+                `organizations`.`name` AS `organization`,
+                `organizations`.`phone` AS `organization_phone`,
+                `address`.`address` AS `address`,
+                `address`.`zip_code` AS `zip_code`,
+                `address`.`district` AS `district`,
+                `address`.`city` AS `city`,
+                `contacts`.`created`,
+                `contacts`.`modified`
             FROM
-              `contacts`
-              LEFT JOIN `emails` ON (`contacts`.`id` = `emails`.`contact_id` AND `contacts`.`primary_email_id` = `emails`.`id`)
-              LEFT JOIN `phones` ON (`contacts`.`id` = `phones`.`contact_id` AND `contacts`.`primary_phone_id` = `phones`.`id`)
-              LEFT JOIN `phone_types` ON (`phones`.`type_id` = `phone_types`.`id`)
-              LEFT JOIN `organizations` ON (`contacts`.`organization_id` = `organizations`.`id`)
-              LEFT JOIN `address` ON (`contacts`.`id` = `address`.`contact_id`)
+                `contacts`
+                LEFT JOIN `emails` ON (`contacts`.`id` = `emails`.`contact_id` AND `contacts`.`primary_email_id` = `emails`.`id`)
+                LEFT JOIN `phones` ON (`contacts`.`id` = `phones`.`contact_id` AND `contacts`.`primary_phone_id` = `phones`.`id`)
+                LEFT JOIN `phone_types` ON (`phones`.`type_id` = `phone_types`.`id`)
+                LEFT JOIN `organizations` ON (`contacts`.`organization_id` = `organizations`.`id`)
+                LEFT JOIN `address` ON (`contacts`.`id` = `address`.`contact_id`)
             WHERE
                 `contacts`.`id` = '{$id}'
         ");
@@ -121,11 +121,11 @@ class Contact
         $data->emails = [];
         $query = $this->mysql->query("
             SELECT
-              `emails`.`id`,
-              `emails`.`email`
+                `emails`.`id`,
+                `emails`.`email`
             FROM
-              `emails`
-              LEFT JOIN `contacts` ON (`emails`.`contact_id` = `contacts`.`id`)
+                `emails`
+                LEFT JOIN `contacts` ON (`emails`.`contact_id` = `contacts`.`id`)
             WHERE
                 `emails`.`contact_id` = '{$id}' AND (
                     `contacts`.`primary_email_id` != `emails`.`id` || `contacts`.`primary_email_id` IS NULL
@@ -141,14 +141,14 @@ class Contact
         $data->phones = [];
         $query = $this->mysql->query("
             SELECT
-              `phones`.`id`,
-              `phones`.`phone`,
-              `phones`.`type_id`,
-              `phone_types`.`label` AS `phone_label`
+                `phones`.`id`,
+                `phones`.`phone`,
+                `phones`.`type_id`,
+                `phone_types`.`label` AS `phone_label`
             FROM
-              `phones`
-              LEFT JOIN `contacts` ON (`phones`.`contact_id` = `contacts`.`id`)
-              LEFT JOIN `phone_types` ON (`phones`.`type_id` = `phone_types`.`id`)
+                `phones`
+                LEFT JOIN `contacts` ON (`phones`.`contact_id` = `contacts`.`id`)
+                LEFT JOIN `phone_types` ON (`phones`.`type_id` = `phone_types`.`id`)
             WHERE
                 `phones`.`contact_id` = '{$id}' AND (
                     `contacts`.`primary_phone_id` != `phones`.`id` || `contacts`.`primary_phone_id` IS NULL
@@ -168,89 +168,62 @@ class Contact
     {
         $first_name = $this->mysql->scape($data['first_name'] ?? '');
         $last_name = $this->mysql->scape($data['last_name'] ?? '');
-        $organization_id = $this->mysql->scape($data['organization_id'] ?? '');
-
-        $address = $this->mysql->scape($data['address'] ?? '');
-        $zip_code = $this->mysql->scape($data['zip_code'] ?? '');
-        $district = $this->mysql->scape($data['district'] ?? '');
-        $city = $this->mysql->scape($data['city'] ?? '');
 
         $this->mysql->query("
             INSERT INTO `contacts` (`first_name`, `last_name`, `created`, `modified`) VALUE
-              ('{$first_name}', '{$last_name}', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+                ('{$first_name}', '{$last_name}', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
         ");
 
         $id = $this->mysql->insert_id();
 
-        if ($organization_id) {
-            $this->mysql->query("
-                UPDATE `contacts` SET
-                  `organization_id` = '{$organization_id}'
-                WHERE `id` = {$id}
-            ");
-        }
-
-        if ($address || $zip_code || $district || $city) {
-            $this->mysql->query("
-                INSERT INTO `address` (`contact_id`, `address`, `zip_code`, `district`, `city`) VALUE
-                  ('{$id}', '{$address}', '{$zip_code}', '{$district}', '{$city}')
-            ");
-        }
-
-        $length = count($data['phone'] ?? []);
-        if ($length) {
-            for ($i = 0; $i < $length; $i++) {
-                $index = $i + 1;
-                $phone = $this->mysql->scape($data['phone'][$i]);
-                $type_id = $this->mysql->scape($data['phone_type_id'][$i]);
-                if ($type_id < 1 || $type_id > 3) {
-                    $type_id = 1;
-                }
-                $this->mysql->query("
-                    INSERT INTO `phones` (`contact_id`, `id`, `type_id`, `phone`) VALUE
-                      ('{$id}', '{$index}', '{$type_id}', '{$phone}')
-                ");
-            }
-
-            $primary_phone_id = $this->mysql->scape($data['primary_phone_id']);
-            if ($primary_phone_id > $length) {
-                $primary_phone_id = 1;
-            }
-            $this->mysql->query("
-                UPDATE `contacts` SET
-                  `primary_phone_id` = '{$primary_phone_id}'
-                WHERE `id` = {$id}
-            ");
-        }
-
-        $length = count($data['email'] ?? []);
-        if ($length) {
-            for ($i = 0; $i < $length; $i++) {
-                $index = $i + 1;
-                $email = $this->mysql->scape($data['email'][$i]);
-                $this->mysql->query("
-                    INSERT INTO `emails` (`contact_id`, `id`, `email`) VALUE
-                      ('{$id}', '{$index}', '{$email}')
-                ");
-            }
-
-            $primary_email_id = $this->mysql->scape($data['primary_email_id']);
-            if ($primary_email_id > $length) {
-                $primary_email_id = 1;
-            }
-            $this->mysql->query("
-                UPDATE `contacts` SET
-                  `primary_email_id` = '{$primary_email_id}'
-                WHERE `id` = {$id}
-            ");
-        }
+        $this->add_info($id, $data);
 
         return $id;
     }
 
-    public function update($id, $entries)
+    public function update($id, $data)
     {
         $id = $this->mysql->scape($id);
+
+        $first_name = $this->mysql->scape($data['first_name'] ?? '');
+        $last_name = $this->mysql->scape($data['last_name'] ?? '');
+
+        $this->mysql->query("
+            UPDATE `contacts` SET
+                `first_name` = '{$first_name}',
+                `last_name` = '{$last_name}',
+                `primary_email_id` = NULL,
+                `primary_phone_id` = NULL,
+                `organization_id` = NULL,
+                `modified` = CURRENT_TIMESTAMP
+            WHERE
+                `id` = {$id}
+        ");
+
+        $this->mysql->query("
+            DELETE FROM
+                `emails`
+            WHERE
+                `contact_id` = {$id}
+        ");
+
+        $this->mysql->query("
+            DELETE FROM
+                `phones`
+            WHERE
+                `contact_id` = {$id}
+        ");
+
+        $this->mysql->query("
+            DELETE FROM
+                `address`
+            WHERE
+                `contact_id` = {$id}
+        ");
+
+        $this->add_info($id, $data);
+
+        return $this->mysql->affected_rows() !== -1;
     }
 
     public function delete($id)
@@ -259,8 +232,8 @@ class Contact
 
         $this->mysql->multi_query("
             UPDATE `contacts` SET
-              `primary_email_id` = NULL,
-              `primary_phone_id` = NULL
+                `primary_email_id` = NULL,
+                `primary_phone_id` = NULL
             WHERE `id` = {$id};
 
             DELETE FROM
@@ -285,5 +258,81 @@ class Contact
         ");
 
         return $this->mysql->affected_rows() !== -1;
+    }
+
+    private function add_info($id, $data)
+    {
+        $organization_id = $this->mysql->scape($data['organization_id'] ?? '');
+
+        if ($organization_id) {
+            $this->mysql->query("
+                UPDATE `contacts` SET
+                    `organization_id` = '{$organization_id}'
+                WHERE
+                    `id` = {$id}
+            ");
+        }
+
+        $address = $this->mysql->scape($data['address'] ?? '');
+        $zip_code = $this->mysql->scape($data['zip_code'] ?? '');
+        $district = $this->mysql->scape($data['district'] ?? '');
+        $city = $this->mysql->scape($data['city'] ?? '');
+
+        if ($address || $zip_code || $district || $city) {
+            $this->mysql->query("
+                INSERT INTO `address` (`contact_id`, `address`, `zip_code`, `district`, `city`) VALUE
+                    ({$id}, '{$address}', '{$zip_code}', '{$district}', '{$city}')
+            ");
+        }
+
+        $length = count($data['phone'] ?? []);
+        if ($length) {
+            for ($i = 0; $i < $length; $i++) {
+                $index = $i + 1;
+                $phone = $this->mysql->scape($data['phone'][$i]);
+                $type_id = $this->mysql->scape($data['phone_type_id'][$i]);
+                if ($type_id < 1 || $type_id > 3) {
+                    $type_id = 1;
+                }
+                $this->mysql->query("
+                    INSERT INTO `phones` (`contact_id`, `id`, `type_id`, `phone`) VALUE
+                        ('{$id}', '{$index}', '{$type_id}', '{$phone}')
+                ");
+            }
+
+            $primary_phone_id = $this->mysql->scape($data['primary_phone_id'] ?? 1);
+            if ($primary_phone_id > $length) {
+                $primary_phone_id = 1;
+            }
+            $this->mysql->query("
+                UPDATE `contacts` SET
+                    `primary_phone_id` = '{$primary_phone_id}'
+                WHERE
+                    `id` = {$id}
+            ");
+        }
+
+        $length = count($data['email'] ?? []);
+        if ($length) {
+            for ($i = 0; $i < $length; $i++) {
+                $index = $i + 1;
+                $email = $this->mysql->scape($data['email'][$i]);
+                $this->mysql->query("
+                    INSERT INTO `emails` (`contact_id`, `id`, `email`) VALUE
+                        ('{$id}', '{$index}', '{$email}')
+                ");
+            }
+
+            $primary_email_id = $this->mysql->scape($data['primary_email_id'] ?? 1);
+            if ($primary_email_id > $length) {
+                $primary_email_id = 1;
+            }
+            $this->mysql->query("
+                UPDATE `contacts` SET
+                    `primary_email_id` = '{$primary_email_id}'
+                WHERE
+                    `id` = {$id}
+            ");
+        }
     }
 }
